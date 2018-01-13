@@ -1,13 +1,13 @@
 language: python
-sudo: required
+
 python:
-- "2.7.12"
+- 2.7.12
+
+sudo: required
+
 services:
 - mysql
 - docker
-
-install:
-- pip install -r requirements.txt
 
 before_install:
 #- openssl aes-256-cbc -K $encrypted_5b1c2ac37d4b_key -iv $encrypted_5b1c2ac37d4b_iv -in deploy.enc -out deploy -d
@@ -24,8 +24,22 @@ before_install:
 - mysql -uroot —default-character-set=utf8 almacenamiento < almacenamiento-votos.sql
 - mysql -uroot —default-character-set=utf8 almacenamiento < datos-prueba.sql
 
+before_deploy:
+  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy.sh
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy.sh almacen_votos # INSERTAR NOMBRE DEL SUBSISTEMA ESPECIFICADO EN LA WIKI SIN LOS CARACTERES "< >"
+  on:
+    branch: master
+
+install:
+- pip install -r requirements.txt
+
 before_script:
 - python main.py
 
 script:
-- py.test pruebas.py
+- python pruebas.py
