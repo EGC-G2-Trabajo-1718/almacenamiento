@@ -16,13 +16,13 @@ before_install:
 - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/docker/dockerfiles/mysql/init.sql
 - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/docker/dockerfiles/mysql/Dockerfile
 - docker build -t egc/mysql .
-- docker network create —subnet=172.18.0.0/16 dev
-- docker run -d —network=dev —ip=172.18.2.2 -e MYSQL_ROOT_PASSWORD=nothing egc/mysql
+- docker network create --subnet=172.18.0.0/16 dev
+- docker run -d --network=dev --ip=172.18.2.2 -e MYSQL_ROOT_PASSWORD=nothing egc/mysql
 - cd ..
 #- mysql -e 'DROP DATABASE IF EXISTS almacenamiento'
 - mysql -e 'CREATE DATABASE IF NOT EXISTS almacenamiento;'
-- mysql -uroot —default-character-set=utf8 almacenamiento < almacenamiento-votos.sql
-- mysql -uroot —default-character-set=utf8 almacenamiento < datos-prueba.sql
+- mysql -uroot --default-character-set=utf8 almacenamiento < almacenamiento-votos.sql
+- mysql -uroot --default-character-set=utf8 almacenamiento < datos-prueba.sql
 
 before_deploy:
   - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
