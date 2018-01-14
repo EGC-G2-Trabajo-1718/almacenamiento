@@ -1,8 +1,6 @@
-
 USE `almacenamiento`;
 
-DROP TABLE IF EXISTS `votos`;
-CREATE TABLE `votos` (
+CREATE TABLE IF NOT EXISTS `votos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token_usuario` char(64) NOT NULL,
   `token_votacion` char(64) NOT NULL,
@@ -12,8 +10,7 @@ CREATE TABLE `votos` (
   UNIQUE KEY `token_usuario, token_votacion, token_pregunta` (`token_usuario`,`token_votacion`,`token_pregunta`) USING BTREE
 );
 
-DROP TABLE IF EXISTS `tokens`;
-CREATE TABLE `tokens` (
+CREATE TABLE IF NOT EXISTS `tokens` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` char(11) NOT NULL,
   PRIMARY KEY (`id`),
