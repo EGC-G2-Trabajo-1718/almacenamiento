@@ -7,7 +7,8 @@ from random import randint
 if __name__ == '__main__':
     db = conectar_db()
 
-    url_base = "http://localhost:50050"
+    # url_base = "http://localhost:50050"
+    url_base = "172.18.2.2:3306"
 
     print "========================================================="
     print "PRUEBA 1: Comprobar voto (Funcional)"
@@ -367,5 +368,7 @@ if __name__ == '__main__':
         print "INCORRECTO"
 
     print "---------------------------------------------------------"
+
+    desconectar_db(db)
     
 
