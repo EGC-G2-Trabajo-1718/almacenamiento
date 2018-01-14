@@ -5,100 +5,20 @@ from _mysql_exceptions import IntegrityError
 from random import randint
 
 if __name__ == '__main__':
-    db = conectar_db()
-    cursor = db.cursor()
-    cursor.execute("show databases")
-    for x in cursor.fetchall():
-         print x[0]
-    db.close()
+    #db = conectar_db()
+    #cursor = db.cursor()
+    #cursor.execute("show databases")
+    #for x in cursor.fetchall():
+         #print x[0]
+    #db.close()
 
-def pruebas():
+#def pruebas():
     db = conectar_db()
 
     url_base = "http://127.0.0.1:5000"
     # url_base = "http://172.18.2.2:3306"
 
-    print "========================================================="
-    print "PRUEBA 1: Comprobar voto (Funcional)"
-    print "========================================================="
-
-    print "Comprobar voto: PRUEBA 1.1 (Llamada Correcta)"
-    prueba_positiva = requests.get(url_base+"/get/comprobar_voto/QWERTY12345/1/1")
-    print "Resultado Esperado: Array con los datos de los votos realizados por el usuario con token=1"
-    print "Resultado Obtenido: " + str(prueba_positiva) + str(prueba_positiva.text)
-    if str(prueba_positiva) == '<Response [404]>':
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-    else:
-        print "-------------------------------------------------------------"
-        print "CORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Comprobar voto: PRUEBA 1.2 (Token incorrecto)"
-    prueba_negativa1 = requests.get(url_base+"/get/comprobar_voto/1/1/1")
-    print "Resultado Esperado: <Response [401]>Token incorrecto."
-    print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
-    if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Comprobar voto: PRUEBA 1.3 (Respuesta vacía)"
-    prueba_negativa2 = requests.get(url_base+"/get/comprobar_voto/QWERTY12345/19/1")
-    print "Resultado Esperado: <Response [404]>El usuario no ha realizado ningun voto en esta votacion."
-    print "Resultado Obtenido: " + str(prueba_negativa2) + str(prueba_negativa2.text)
-    if str(prueba_negativa2) + str(prueba_negativa2.text) == "<Response [404]>El usuario no ha realizado ningun voto en esta votacion.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
-
-    print "========================================================="
-    print "PRUEBA 2: Comprobar voto pregunta (Funcional)"
-    print "========================================================="
-
-    print "Comprobar voto pregunta: PRUEBA 2.1 (Llamada Correcta)"
-    prueba_positiva = requests.get(url_base+"/get/comprobar_voto_pregunta/QWERTY12345/1/1/1")
-    print "Resultado Esperado: Array con los datos de los votos realizados por el usuario con token=1 en la pregunta con token=1"
-    print "Resultado Obtenido: " + str(prueba_positiva) + str(prueba_positiva.text)
-    if str(prueba_positiva) == '<Response [404]>':
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-    else:
-        print "-------------------------------------------------------------"
-        print "CORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Comprobar voto pregunta: PRUEBA 2.2 (Token incorrecto)"
-    prueba_negativa1 = requests.get(url_base+"/get/comprobar_voto_pregunta/1/1/1/1")
-    print "Resultado Esperado: <Response [401]>Token incorrecto."
-    print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
-    if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Comprobar voto pregunta: PRUEBA 2.3 (Respuesta vacía)"
-    prueba_negativa2 = requests.get(url_base+"/get/comprobar_voto_pregunta/QWERTY12345/19/1/1")
-    print "Resultado Esperado: <Response [404]>El usuario no ha realizado ningun voto en esta pregunta de esta votacion."
-    print "Resultado Obtenido: " + str(prueba_negativa2) + str(prueba_negativa2.text)
-    if str(prueba_negativa2) + str(prueba_negativa2.text) == "<Response [404]>El usuario no ha realizado ningun voto en esta pregunta de esta votacion.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
+    
 
     print "========================================================="
     print "PRUEBA 3: Comprobar token (Unitaria)"
@@ -225,92 +145,7 @@ def pruebas():
 
     print "---------------------------------------------------------"
 
-    print "========================================================="
-    print "PRUEBA 6: Obtener votos (Funcional)"
-    print "========================================================="
-
-    print "Obtener votos: PRUEBA 6.1 (Llamada correcta)"
-    prueba_positiva = requests.get(url_base+"/get/obtener_votos/QWERTY12345/1/1")
-    print "Resultado Esperado: Array con los datos de los votos realizados por el usuario con token=1"
-    print "Resultado Obtenido: " + str(prueba_positiva.text)
-    if str(prueba_positiva) == '<Response [404]>':
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Obtener votos: PRUEBA 6.2 (Token incorrecto)"
-    prueba_negativa1 = requests.get(url_base+"/get/obtener_votos/DFKJGE54368/1/1")
-    print "Resultado Esperado: <Response [401]>Token incorrecto."
-    print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
-    if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Obtener votos: PRUEBA 6.3 (Array Vacío)"
-    prueba_negativa2 = requests.get(url_base+"/get/obtener_votos/QWERTY12345/78/1")
-    print "Resultado Esperado: Array vacío"
-    print "Resultado Obtenido: " + str(prueba_negativa2) + str(prueba_negativa2.text)
-    if str(prueba_negativa2.text) == '[]':
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
     
-    print "---------------------------------------------------------"
-
-
-    print "========================================================="
-    print "PRUEBA 7: Almacenar votos (Funcional)"
-    print "========================================================="
-
-    print "Almacenar votos: PRUEBA 7.1 (Llamada Correcta)"
-    print "Resultado Esperado: <Response [200]>El voto se ha almacenado satisfactoriamente."
-    prueba_positiva = requests.post(url_base+"/post/almacenar_voto", {"token_bd":"QWERTY12345","token_usuario":"28","token_votacion":"1","token_pregunta":"2","token_respuesta":"1"})
-    print "Resultado Obtenido: " + str(prueba_positiva) + prueba_positiva.text.encode('utf-8')
-
-    if str(prueba_positiva) == "<Response [200]>":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    elif str(prueba_positiva) == "<Response [400]>":
-        print "---------------------------------------------------------"
-        print "La llamada está bien pero ese voto ya existe y no se puede duplicar"
-    else:
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Almacenar votos: PRUEBA 7.2 (Token Incorrecto)"
-    prueba_negativa1 = requests.post(url_base+"/post/almacenar_voto", {"token_bd":"FDAIFJ52987","token_usuario":"26","token_votacion":"1","token_pregunta":"2","token_respuesta":"1"})
-    print "Resultado Esperado: <Response [401]>Token incorrecto."
-    print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
-    if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
-    print "Almacenar votos: PRUEBA 7.3 (Voto repetido)"
-    prueba_negativa2 = requests.post(url_base+"/post/almacenar_voto", {"token_bd":"QWERTY12345","token_usuario":"1","token_votacion":"1","token_pregunta":"2","token_respuesta":"1"})
-    print "Resultado Esperado: <Response [400]>Un usuario sólo puede votar una vez a una pregunta."
-    print "Resultado Obtenido: " + str(prueba_negativa2) + prueba_negativa2.text.encode('utf-8')
-    if str(prueba_negativa2) + prueba_negativa2.text.encode('utf-8') == "<Response [400]>Un usuario sólo puede votar una vez a una pregunta.":
-        print "---------------------------------------------------------"
-        print "CORRECTO"
-    else:
-        print "---------------------------------------------------------"
-        print "INCORRECTO"
-
-    print "---------------------------------------------------------"
 
     print "========================================================="
     print "PRUEBA 8: Consultar voto pregunta (Unitaria)"
