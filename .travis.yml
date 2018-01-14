@@ -24,9 +24,9 @@ before_install:
 - mysql -uroot --default-character-set=utf8 almacenamiento < almacenamiento-votos.sql
 - mysql -uroot --default-character-set=utf8 almacenamiento < datos-prueba.sql
 
-#before_deploy:
+before_deploy:
 #  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
-#  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy.sh
+  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy.sh
 
 deploy:
   skip_cleanup: true
