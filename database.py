@@ -4,7 +4,7 @@ import MySQLdb
 
 
 def conectar_db():
-    db = MySQLdb.connect(host="172.18.2.2",    # your host, usually localhost
+    db = MySQLdb.connect(host="localhost",    # your host, usually localhost
                      user="alm-user",         # your username
                      passwd="egc",  # your password
                      db="almacenamiento")        # name of the data base
