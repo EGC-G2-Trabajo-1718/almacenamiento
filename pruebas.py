@@ -11,8 +11,8 @@ if __name__ == '__main__':
 # def pruebas():
     db = conectar_db()
 
-    # url_base = "http://localhost:50050"
-    url_base = "http://172.18.2.2:3306"
+    url_base = "http://127.0.0.1:5000"
+    # url_base = "http://172.18.2.2:3306"
 
     print "========================================================="
     print "PRUEBA 1: Comprobar voto (Funcional)"
