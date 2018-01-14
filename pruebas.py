@@ -12,7 +12,7 @@ if __name__ == '__main__':
     print "========================================================="
 
     print "Comprobar voto: PRUEBA 1.1 (Llamada Correcta)"
-    prueba_positiva = requests.get("http://127.0.0.1:5000/get/comprobar_voto/QWERTY12345/1/1")
+    prueba_positiva = requests.get("http://172.18.2.50:50050/get/comprobar_voto/QWERTY12345/1/1")
     print "Resultado Esperado: Array con los datos de los votos realizados por el usuario con token=1"
     print "Resultado Obtenido: " + str(prueba_positiva) + str(prueba_positiva.text)
     if str(prueba_positiva) == '<Response [404]>':
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     print "---------------------------------------------------------"
     print "Comprobar voto: PRUEBA 1.2 (Token incorrecto)"
-    prueba_negativa1 = requests.get("http://127.0.0.1:5000/get/comprobar_voto/1/1/1")
+    prueba_negativa1 = requests.get("http://172.18.2.50:50050/get/comprobar_voto/1/1/1")
     print "Resultado Esperado: <Response [401]>Token incorrecto."
     print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
     if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     print "---------------------------------------------------------"
     print "Comprobar voto: PRUEBA 1.3 (Respuesta vacía)"
-    prueba_negativa2 = requests.get("http://127.0.0.1:5000/get/comprobar_voto/QWERTY12345/19/1")
+    prueba_negativa2 = requests.get("http://172.18.2.50:50050/get/comprobar_voto/QWERTY12345/19/1")
     print "Resultado Esperado: <Response [404]>El usuario no ha realizado ningun voto en esta votacion."
     print "Resultado Obtenido: " + str(prueba_negativa2) + str(prueba_negativa2.text)
     if str(prueba_negativa2) + str(prueba_negativa2.text) == "<Response [404]>El usuario no ha realizado ningun voto en esta votacion.":
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     print "========================================================="
 
     print "Comprobar voto pregunta: PRUEBA 2.1 (Llamada Correcta)"
-    prueba_positiva = requests.get("http://127.0.0.1:5000/get/comprobar_voto_pregunta/QWERTY12345/1/1/1")
+    prueba_positiva = requests.get("http://172.18.2.50:50050/get/comprobar_voto_pregunta/QWERTY12345/1/1/1")
     print "Resultado Esperado: Array con los datos de los votos realizados por el usuario con token=1 en la pregunta con token=1"
     print "Resultado Obtenido: " + str(prueba_positiva) + str(prueba_positiva.text)
     if str(prueba_positiva) == '<Response [404]>':
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     print "---------------------------------------------------------"
     print "Comprobar voto pregunta: PRUEBA 2.2 (Token incorrecto)"
-    prueba_negativa1 = requests.get("http://127.0.0.1:5000/get/comprobar_voto_pregunta/1/1/1/1")
+    prueba_negativa1 = requests.get("http://172.18.2.50:50050/get/comprobar_voto_pregunta/1/1/1/1")
     print "Resultado Esperado: <Response [401]>Token incorrecto."
     print "Resultado Obtenido: " + str(prueba_negativa1) + str(prueba_negativa1.text)
     if str(prueba_negativa1) + str(prueba_negativa1.text) == "<Response [401]>Token incorrecto.":
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     print "---------------------------------------------------------"
     print "Comprobar voto pregunta: PRUEBA 2.3 (Respuesta vacía)"
-    prueba_negativa2 = requests.get("http://127.0.0.1:5000/get/comprobar_voto_pregunta/QWERTY12345/19/1/1")
+    prueba_negativa2 = requests.get("http://172.18.2.50:50050/get/comprobar_voto_pregunta/QWERTY12345/19/1/1")
     print "Resultado Esperado: <Response [404]>El usuario no ha realizado ningun voto en esta pregunta de esta votacion."
     print "Resultado Obtenido: " + str(prueba_negativa2) + str(prueba_negativa2.text)
     if str(prueba_negativa2) + str(prueba_negativa2.text) == "<Response [404]>El usuario no ha realizado ningun voto en esta pregunta de esta votacion.":
