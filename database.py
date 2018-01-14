@@ -4,10 +4,10 @@ import MySQLdb
 
 
 def conectar_db():
-    db = MySQLdb.connect(host="127.0.0.1",    # your host, usually localhost
+    db = MySQLdb.connect(host="178.18.2.2",    # your host, usually localhost
                      port=3306,
-                     user="root",         # your username
-                     passwd="root",  # your password
+                     user="alm-user",         # your username
+                     passwd="egc",  # your password
                      db="almacenamiento")        # name of the data base
     return db
 
