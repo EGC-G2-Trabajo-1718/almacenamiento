@@ -42,4 +42,4 @@ install:
 #- python main.py
 
 script:
-- python pruebas.py
+- python main.py test pruebas.py
