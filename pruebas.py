@@ -8,8 +8,7 @@ if __name__ == '__main__':
     db = conectar_db()
     cursor = db.cursor()
     cursor.execute("show tables")
-    for x in cursor.fetchall():
-         print x[0]
+    print cursor.fetchall():
     db.close()
 
 def pruebas():
