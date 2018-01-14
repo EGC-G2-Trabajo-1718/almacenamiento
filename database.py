@@ -4,9 +4,9 @@ import MySQLdb
 
 
 def conectar_db():
-    db = MySQLdb.connect(host="127.0.0.1",    # your host, usually localhost
-                     user="root",         # your username
-                     passwd="root",  # your password
+    db = MySQLdb.connect(host="172.18.2.2",    # your host, usually localhost
+                     user="alm-user",         # your username
+                     passwd="egc",  # your password
                      db="almacenamiento")        # name of the data base
     return db
 
@@ -14,34 +14,6 @@ def conectar_db():
 def desconectar_db(db):
     db.close()
 
-# Crear bd
-
-
-def ejecutar_script_archivo(filename):
-    db = db = MySQLdb.connect(host="127.0.0.1",    # your host, usually localhost
-                     user="root",         # your username
-                     passwd="root")
-    c = db.cursor()
-
-    # Open and read the file as a single buffer
-    fd = open(filename, 'r')
-    sqlFile = fd.read()
-    fd.close()
-
-    # all SQL commands (split on ';')
-    sqlCommands = sqlFile.split(';')
-
-    # Execute every command from the input file
-    for command in sqlCommands:
-        # print command
-        # This will skip and report errors
-        # For example, if the tables do not yet exist, this will skip over
-        # the DROP TABLE commands
-        try:
-            c.execute(command)
-        except MySQLdb.OperationalError, msg:
-            if not msg[1]=='Query was empty':
-                print "Command skipped: ", msg
 
 # Consulta
 
