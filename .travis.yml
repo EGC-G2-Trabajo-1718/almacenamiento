@@ -38,8 +38,8 @@ deploy:
 install:
 - pip install -r requirements.txt
 
-#before_script:
-#- python main.py
+before_script:
+- python main.py
 
 script:
 - python pruebas.py
