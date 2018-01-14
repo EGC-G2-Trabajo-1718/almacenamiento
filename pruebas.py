@@ -5,10 +5,12 @@ from _mysql_exceptions import IntegrityError
 from random import randint
 
 if __name__ == '__main__':
-# 	print "YUJUUUU"
-#     pruebas()
-#
-# def pruebas():
+    db = conectar_db()
+    cursor = db.cursor()
+    cursor.execute("show databases")
+    db.close()
+
+def pruebas():
     db = conectar_db()
 
     url_base = "http://127.0.0.1:5000"
