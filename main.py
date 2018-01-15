@@ -94,6 +94,20 @@ def obtener_votos(token_bd, token_votacion, token_pregunta):
     votes = json.dumps(votes)
     return votes
 
+@app.route('/get/obtener_votos_votacion/<token_bd>/<token_votacion>', methods=['GET'])
+def obtener_votos_votacion(token_bd, token_votacion):
+    db = conectar_db()
+
+    if not comprobar_token(db, token_bd):
+        return handle_unauthorized('Token incorrecto.')
+
+    votes = consultar_votos_votacion(db, token_votacion)
+
+    desconectar_db(db)
+
+    votes = json.dumps(votes)
+    return votes
+
 # POST
 
 parser = reqparse.RequestParser()
@@ -168,4 +182,15 @@ def almacenar_voto_multiple():
 
 
 if __name__ == '__main__':
+    # dbCreada = False
+    # db = MySQLdb.connect(host="127.0.0.1", user="root", passwd="root")
+    # cursor = db.cursor()
+    # cursor.execute("show databases")
+    # for x in cursor.fetchall():
+    #     if x[0] == "almacenamiento":
+    #         dbCreada = True
+    # if dbCreada == False:
+    #     ejecutar_script_archivo('almacenamiento-votos.sql')
+    # db.close()
+
     app.run(debug=True)
